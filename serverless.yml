@@ -1,0 +1,41 @@
+service: serverless-wizeline-nettool-python
+
+frameworkVersion: ">=1.2.0 <2.0.0"
+
+provider:
+  name: aws
+  runtime: python3.6 # or python3.6, supported as of April 2017
+
+functions:
+  health:
+    handler: src/api.url_health
+    events:
+      - http:
+          path: _health
+          method: get
+          cors: true
+
+  cidr_to_mask:
+    handler: src/cidr_to_mask.url_cidr_to_mask
+    events:
+      - http:
+          path: cidr-to-mask
+          method: get
+          cors: true
+
+  mask_to_cidr:
+    handler: src/mask_to_cidr.url_mask_to_cidr
+    events:
+      - http:
+          path: mask-to-cidr
+          method: get
+          cors: true
+
+  ip_validation:
+    handler: src/ip_validation.url_ipv4_validation
+    events:
+      - http:
+          path: ip-validation
+          method: get
+          cors: true
+
